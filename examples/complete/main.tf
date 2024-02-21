@@ -44,7 +44,7 @@ module "example" {
   removal_policies = var.removal_policies
 
   #alicloud_ess_scaling_configuration
-  force_delete = var.force_delete
+  force_delete = "true"
 
   #alicloud_ess_scaling_rule
   adjustment_type  = var.adjustment_type
