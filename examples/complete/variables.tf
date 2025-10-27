@@ -23,13 +23,6 @@ variable "removal_policies" {
   default     = ["OldestInstance", "NewestInstance"]
 }
 
-#alicloud_ess_scaling_configuration
-variable "force_delete" {
-  description = "Rule force delete."
-  type        = bool
-  default     = false
-}
-
 #alicloud_ess_scaling_rule
 variable "adjustment_type" {
   description = "Scaling Total Capacity."

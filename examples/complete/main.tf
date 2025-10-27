@@ -1,3 +1,7 @@
+provider "alicloud" {
+  region = "cn-zhangjiakou"
+}
+
 data "alicloud_zones" "default" {
 }
 
@@ -7,19 +11,20 @@ resource "alicloud_security_group" "default" {
 
 module "vpc" {
   source             = "alibaba/vpc/alicloud"
+  version            = "~> 1.11.0"
   create             = true
   vpc_cidr           = "172.16.0.0/16"
   vswitch_cidrs      = ["172.16.0.0/21"]
-  availability_zones = [data.alicloud_zones.default.zones.0.id]
+  availability_zones = [data.alicloud_zones.default.zones[0].id]
 }
 
 module "example" {
   source = "../.."
 
   #alicloud_instance_types
-  availability_zone = data.alicloud_zones.default.zones.0.id
+  availability_zone = data.alicloud_zones.default.zones[0].id
   cpu_core_count    = 2
-  memory_size       = 4
+  memory_size       = 8
 
   #alicloud_images
   name_regex  = "^ubuntu_18.*64"
